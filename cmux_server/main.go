@@ -1,19 +1,19 @@
 package main
 
 import (
+	"context"
+	"log"
 	"net"
 	"net/http"
 	"os"
 	"os/signal"
 	"strings"
 	"syscall"
-	"context"
-	"log"
 
 	"github.com/soheilhy/cmux"
 	"google.golang.org/grpc"
-	
-	pb "cmux-demo/pb"
+
+	"cmux_demo/pb"
 )
 
 func queryHandler(w http.ResponseWriter, r *http.Request) {
@@ -76,7 +76,7 @@ func main() {
 		l.Close()
 	}()
 
-	if err := tcpm.Serve(); !strings.Contains(err.Error(),
+	if err := tcpm.Serve(); err != nil && !strings.Contains(err.Error(),
 		"use of closed network connection") {
 		log.Printf("while servering cmux %v\n", err)
 	}

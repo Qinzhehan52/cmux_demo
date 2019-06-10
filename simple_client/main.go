@@ -1,7 +1,7 @@
 package main
 
 import (
-	pb "cmux-demo/pb"
+	"cmux_demo/pb"
 	"context"
 	"fmt"
 	"os"
